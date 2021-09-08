@@ -9,6 +9,9 @@ if(CMAKE_CONFIGURATION_TYPES)
 	set(CMAKE_CXX_FLAGS_CHECKED "${CMAKE_CXX_FLAGS_RELEASE}")
 endif()
 
-add_subdirectory(NVIDIA.PhysX.Native)
-
-add_subdirectory(NVIDIA.PhysX)
+if (ANDROID)
+	add_subdirectory(NVIDIA.PhysX.Native)
+else ()
+	add_subdirectory(NVIDIA.PhysX.Native)
+	add_subdirectory(NVIDIA.PhysX)
+endif ()

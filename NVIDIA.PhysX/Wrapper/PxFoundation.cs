@@ -44,22 +44,29 @@ public partial class PxFoundation {
     return ret;
   }
 
-  public PxPhysics createPhysics(PxVersion physicsVersion, PxTolerancesScale scale, PxPvd pvd) {
-    global::System.IntPtr cPtr = NativePINVOKE.PxFoundation_createPhysics__SWIG_0(swigCPtr, (int)physicsVersion, PxTolerancesScale.getCPtr(scale), PxPvd.getCPtr(pvd));
+  public PxPhysics createPhysics(PxVersion physicsVersion, PxTolerancesScale scale, bool trackOutstandingAllocations, PxPvd pvd) {
+    global::System.IntPtr cPtr = NativePINVOKE.PxFoundation_createPhysics__SWIG_0(swigCPtr, (int)physicsVersion, PxTolerancesScale.getCPtr(scale), trackOutstandingAllocations, PxPvd.getCPtr(pvd));
+    PxPhysics ret = (cPtr == global::System.IntPtr.Zero) ? null : PxPhysics.getWrapper(cPtr, false);
+    if (NativePINVOKE.SWIGPendingException.Pending) throw NativePINVOKE.SWIGPendingException.Retrieve();
+    return ret;
+  }
+
+  public PxPhysics createPhysics(PxVersion physicsVersion, PxTolerancesScale scale, bool trackOutstandingAllocations) {
+    global::System.IntPtr cPtr = NativePINVOKE.PxFoundation_createPhysics__SWIG_1(swigCPtr, (int)physicsVersion, PxTolerancesScale.getCPtr(scale), trackOutstandingAllocations);
     PxPhysics ret = (cPtr == global::System.IntPtr.Zero) ? null : PxPhysics.getWrapper(cPtr, false);
     if (NativePINVOKE.SWIGPendingException.Pending) throw NativePINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public PxPhysics createPhysics(PxVersion physicsVersion, PxTolerancesScale scale) {
-    global::System.IntPtr cPtr = NativePINVOKE.PxFoundation_createPhysics__SWIG_1(swigCPtr, (int)physicsVersion, PxTolerancesScale.getCPtr(scale));
+    global::System.IntPtr cPtr = NativePINVOKE.PxFoundation_createPhysics__SWIG_2(swigCPtr, (int)physicsVersion, PxTolerancesScale.getCPtr(scale));
     PxPhysics ret = (cPtr == global::System.IntPtr.Zero) ? null : PxPhysics.getWrapper(cPtr, false);
     if (NativePINVOKE.SWIGPendingException.Pending) throw NativePINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public PxPhysics createPhysics(PxVersion physicsVersion) {
-    global::System.IntPtr cPtr = NativePINVOKE.PxFoundation_createPhysics__SWIG_2(swigCPtr, (int)physicsVersion);
+    global::System.IntPtr cPtr = NativePINVOKE.PxFoundation_createPhysics__SWIG_3(swigCPtr, (int)physicsVersion);
     PxPhysics ret = (cPtr == global::System.IntPtr.Zero) ? null : PxPhysics.getWrapper(cPtr, false);
     if (NativePINVOKE.SWIGPendingException.Pending) throw NativePINVOKE.SWIGPendingException.Retrieve();
     return ret;

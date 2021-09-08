@@ -2070,7 +2070,7 @@ namespace physx {
     class PxFoundation {
     public:
         %extend { static PxFoundation* create(PxVersion physicsVersion, PxAllocatorCallback& allocatorCallback, PxErrorCallback& errorCallback) { return PxCreateFoundation(physicsVersion, allocatorCallback, errorCallback); }}
-        %extend { PxPhysics* createPhysics(PxVersion physicsVersion, const physx::PxTolerancesScale& scale = physx::PxTolerancesScale(), PxPvd* pvd = nullptr) { return PxCreatePhysics(physicsVersion, *self, scale, false, pvd); }}
+        %extend { PxPhysics* createPhysics(PxVersion physicsVersion, const physx::PxTolerancesScale& scale = physx::PxTolerancesScale(), bool trackOutstandingAllocations = false, PxPvd* pvd = nullptr) { return PxCreatePhysics(physicsVersion, *self, scale, trackOutstandingAllocations, pvd); }}
         %extend { PxCudaContextManager* createCudaContextManager(const char* dllPath) { return PxFoundation_createCudaContextManager(*self, dllPath); }}
         %extend { PxPvd* createPvd() { return physx::PxCreatePvd(*self); }}
         %extend { PxCooking* createCooking(PxVersion physicsVersion, const PxCookingParams& params) { return PxCreateCooking(physicsVersion, *self, params); }}

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/NVIDIA/PhysX Samples/PCS Samples/PCS Samples.unity
+    guid: a29d0838d6597e14683b67f80bfe4746
   m_configObjects: {}

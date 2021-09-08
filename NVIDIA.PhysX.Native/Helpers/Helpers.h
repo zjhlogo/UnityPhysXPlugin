@@ -113,7 +113,7 @@ namespace physx
         class PxSimulationFilterCallback : public physx::PxSimulationFilterCallback {
         public:
             virtual PxFilterFlag::Enum pairFound(PxU32 pairID, const PxFilterObjectAttributes& attributes0, const PxFilterData& filterData0, const PxActor* a0, const PxShape* s0, const PxFilterObjectAttributes& attributes1, const PxFilterData& filterData1, const PxActor* a1, const PxShape* s1, PxPairFlag::Enum& pairFlags) { return PxFilterFlag::eDEFAULT; }
-            virtual PxFilterFlags pairFound(PxU32 pairID, PxFilterObjectAttributes attributes0, PxFilterData filterData0, const PxActor* a0, const PxShape* s0, PxFilterObjectAttributes attributes1, PxFilterData filterData1, const PxActor* a1, const PxShape* s1, PxPairFlags& _pairFlags)
+            virtual PxFilterFlags pairFound(PxU32 pairID, PxFilterObjectAttributes attributes0, PxFilterData filterData0, const PxActor* a0, const PxShape* s0, PxFilterObjectAttributes attributes1, PxFilterData filterData1, const PxActor* a1, const PxShape* s1, PxPairFlags& _pairFlags) override
             {
                 PxPairFlag::Enum pairFlags;
                 PxFilterFlag::Enum ret = pairFound(pairID, attributes0, filterData0, a0, s0, attributes1, filterData1, a1, s1, pairFlags);
@@ -121,12 +121,12 @@ namespace physx
                 return ret;
             }
             virtual void pairLost(PxU32 pairID, bool objectRemoved, const PxFilterObjectAttributes& attributes0, const PxFilterData& filterData0, const PxFilterObjectAttributes& attributes1, const PxFilterData& filterData1) {}
-            virtual void pairLost(PxU32 pairID, PxFilterObjectAttributes attributes0, PxFilterData filterData0, PxFilterObjectAttributes attributes1, PxFilterData filterData1, bool objectRemoved)
+            virtual void pairLost(PxU32 pairID, PxFilterObjectAttributes attributes0, PxFilterData filterData0, PxFilterObjectAttributes attributes1, PxFilterData filterData1, bool objectRemoved) override
             {
-                pairLost(pairID, attributes0, filterData0, attributes1, filterData1, objectRemoved);
+                pairLost(pairID, objectRemoved, attributes0, filterData0, attributes1, filterData1);
             }
             virtual bool statusChange(PxU32& pairID, PxPairFlag::Enum& pairFlags, PxFilterFlag::Enum& filterFlags) { return false; }
-            virtual bool statusChange(PxU32& pairID, PxPairFlags& _pairFlags, PxFilterFlags& _filterFlags)
+            virtual bool statusChange(PxU32& pairID, PxPairFlags& _pairFlags, PxFilterFlags& _filterFlags) override
             {
                 PxPairFlag::Enum pairFlags; PxFilterFlag::Enum filterFlags;
                 bool ret = statusChange(pairID, pairFlags, filterFlags);
@@ -184,7 +184,7 @@ namespace physx
         }
         inline void clear()
         {
-            for (PxU32 i = 0; i < pack_count; ++i)
+            for (PxU32 i = 0; i < PACK_COUNT; ++i)
             {
                 m_packs[i] = 0;
             }
@@ -238,4 +238,18 @@ namespace physx
         virtual PxFilterFlags pairFound(PxU32 pairID, PxFilterObjectAttributes attributes0, PxFilterData filterData0, const PxActor* a0, const PxShape* s0, PxFilterObjectAttributes attributes1, PxFilterData filterData1, const PxActor* a1, const PxShape* s1, PxPairFlags& _pairFlags);
         static PxUnityCollisionFiltering instance;
     };
+
+#if PX_SUPPORT_GPU_PHYSX
+
+#else
+    class PxCudaContextManager
+    {
+    public:
+        bool contextIsValid() const { return false; }
+        void release() { delete this; }
+
+    protected:
+        virtual ~PxCudaContextManager() {}
+    };
+#endif
 }

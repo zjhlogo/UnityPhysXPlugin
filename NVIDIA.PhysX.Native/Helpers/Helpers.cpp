@@ -27,19 +27,27 @@
 
 #include <header.h>
 
+#if PX_SUPPORT_GPU_PHYSX
 physx::PxCudaContextManager* PxFoundation_createCudaContextManager(physx::PxFoundation& foundation, const char* dllPath)
 {
     struct GpuLoadHook : PxGpuLoadHook
     {
         std::string dllPath;
-        virtual const char* getPhysXGpuDllName() const { return dllPath.c_str(); }
+        virtual const char *getPhysXGpuDllName() const { return dllPath.c_str(); }
     };
+
     static GpuLoadHook sl_gpuLoadHook;
     sl_gpuLoadHook.dllPath = dllPath;
     PxSetPhysXGpuLoadHook(&sl_gpuLoadHook);
     physx::PxCudaContextManagerDesc cudaDesc;
     return PxCreateCudaContextManager(foundation, cudaDesc);
 }
+#else
+physx::PxCudaContextManager* PxFoundation_createCudaContextManager(physx::PxFoundation& foundation, const char* dllPath)
+{
+    return new physx::PxCudaContextManager();
+}
+#endif
 
 //void physx::PxErrorToExceptionCallback::reportError(physx::PxErrorCode::Enum code, const char* message, const char* file, int line)
 //{

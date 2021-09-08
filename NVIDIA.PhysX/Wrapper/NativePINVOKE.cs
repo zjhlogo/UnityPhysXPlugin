@@ -3110,13 +3110,16 @@ class NativePINVOKE {
   public static extern global::System.IntPtr PxFoundation_create(int jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
   [global::System.Runtime.InteropServices.DllImport("NVIDIA.PhysX.Native", EntryPoint="CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SWIG_0___")]
-  public static extern global::System.IntPtr PxFoundation_createPhysics__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+  public static extern global::System.IntPtr PxFoundation_createPhysics__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, bool jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
 
   [global::System.Runtime.InteropServices.DllImport("NVIDIA.PhysX.Native", EntryPoint="CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SWIG_1___")]
-  public static extern global::System.IntPtr PxFoundation_createPhysics__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+  public static extern global::System.IntPtr PxFoundation_createPhysics__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, bool jarg4);
 
   [global::System.Runtime.InteropServices.DllImport("NVIDIA.PhysX.Native", EntryPoint="CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SWIG_2___")]
-  public static extern global::System.IntPtr PxFoundation_createPhysics__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+  public static extern global::System.IntPtr PxFoundation_createPhysics__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+  [global::System.Runtime.InteropServices.DllImport("NVIDIA.PhysX.Native", EntryPoint="CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SWIG_3___")]
+  public static extern global::System.IntPtr PxFoundation_createPhysics__SWIG_3(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
   [global::System.Runtime.InteropServices.DllImport("NVIDIA.PhysX.Native", EntryPoint="CSharp_NVIDIAfPhysX_PxFoundation_createCudaContextManager___")]
   public static extern global::System.IntPtr PxFoundation_createCudaContextManager(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);

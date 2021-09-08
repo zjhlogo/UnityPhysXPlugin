@@ -549,7 +549,7 @@ SWIGINTERN physx::PxPvdSceneFlag::Enum physx_PxPvdSceneClient_getScenePvdFlags(p
             physx::PxSimulationFilterShader* physx_PxUnityCollisionFiltering_function_get() { thread_local physx::PxSimulationFilterShader s; s = physx::PxUnityCollisionFiltering::shader; return &s; }
         
 SWIGINTERN physx::PxFoundation *physx_PxFoundation_create(physx::PxVersion physicsVersion,physx::PxAllocatorCallback &allocatorCallback,physx::PxErrorCallback &errorCallback){ return PxCreateFoundation(physicsVersion, allocatorCallback, errorCallback); }
-SWIGINTERN physx::PxPhysics *physx_PxFoundation_createPhysics__SWIG_0(physx::PxFoundation *self,physx::PxVersion physicsVersion,physx::PxTolerancesScale const &scale=physx::PxTolerancesScale(),physx::PxPvd *pvd=nullptr){ return PxCreatePhysics(physicsVersion, *self, scale, false, pvd); }
+SWIGINTERN physx::PxPhysics *physx_PxFoundation_createPhysics__SWIG_0(physx::PxFoundation *self,physx::PxVersion physicsVersion,physx::PxTolerancesScale const &scale=physx::PxTolerancesScale(),bool trackOutstandingAllocations=false,physx::PxPvd *pvd=nullptr){ return PxCreatePhysics(physicsVersion, *self, scale, trackOutstandingAllocations, pvd); }
 SWIGINTERN physx::PxCudaContextManager *physx_PxFoundation_createCudaContextManager(physx::PxFoundation *self,char const *dllPath){ return PxFoundation_createCudaContextManager(*self, dllPath); }
 SWIGINTERN physx::PxPvd *physx_PxFoundation_createPvd(physx::PxFoundation *self){ return physx::PxCreatePvd(*self); }
 SWIGINTERN physx::PxCooking *physx_PxFoundation_createCooking(physx::PxFoundation *self,physx::PxVersion physicsVersion,physx::PxCookingParams const &params){ return PxCreateCooking(physicsVersion, *self, params); }
@@ -19198,12 +19198,13 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_NVIDIAfPhysX_PxFoundation_create___(int jar
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SWIG_0___(void * jarg1, int jarg2, void * jarg3, void * jarg4) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SWIG_0___(void * jarg1, int jarg2, void * jarg3, unsigned int jarg4, void * jarg5) {
   void * jresult ;
   physx::PxFoundation *arg1 = (physx::PxFoundation *) 0 ;
   physx::PxVersion arg2 ;
   physx::PxTolerancesScale *arg3 = 0 ;
-  physx::PxPvd *arg4 = (physx::PxPvd *) 0 ;
+  bool arg4 ;
+  physx::PxPvd *arg5 = (physx::PxPvd *) 0 ;
   physx::PxPhysics *result = 0 ;
   
   arg1 = (physx::PxFoundation *)jarg1; 
@@ -19213,7 +19214,42 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SW
     SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "physx::PxTolerancesScale const & type is null", 0);
     return 0;
   } 
-  arg4 = (physx::PxPvd *)jarg4; 
+  arg4 = jarg4 ? true : false; 
+  arg5 = (physx::PxPvd *)jarg5; 
+  {
+    try {
+      result = (physx::PxPhysics *)physx_PxFoundation_createPhysics__SWIG_0(arg1,arg2,(physx::PxTolerancesScale const &)*arg3,arg4,arg5);
+    } catch(std::exception e) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, e.what()); return 0; 
+      };
+    } catch(...) {
+      {
+        SWIG_CSharpException(SWIG_RuntimeError, "Unknown exception"); return 0; 
+      };
+    }
+  }
+  jresult = (void *)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void * SWIGSTDCALL CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SWIG_1___(void * jarg1, int jarg2, void * jarg3, unsigned int jarg4) {
+  void * jresult ;
+  physx::PxFoundation *arg1 = (physx::PxFoundation *) 0 ;
+  physx::PxVersion arg2 ;
+  physx::PxTolerancesScale *arg3 = 0 ;
+  bool arg4 ;
+  physx::PxPhysics *result = 0 ;
+  
+  arg1 = (physx::PxFoundation *)jarg1; 
+  arg2 = (physx::PxVersion)jarg2; 
+  arg3 = (physx::PxTolerancesScale *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "physx::PxTolerancesScale const & type is null", 0);
+    return 0;
+  } 
+  arg4 = jarg4 ? true : false; 
   {
     try {
       result = (physx::PxPhysics *)physx_PxFoundation_createPhysics__SWIG_0(arg1,arg2,(physx::PxTolerancesScale const &)*arg3,arg4);
@@ -19232,7 +19268,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SW
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SWIG_1___(void * jarg1, int jarg2, void * jarg3) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SWIG_2___(void * jarg1, int jarg2, void * jarg3) {
   void * jresult ;
   physx::PxFoundation *arg1 = (physx::PxFoundation *) 0 ;
   physx::PxVersion arg2 ;
@@ -19264,7 +19300,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SW
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SWIG_2___(void * jarg1, int jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_NVIDIAfPhysX_PxFoundation_createPhysics__SWIG_3___(void * jarg1, int jarg2) {
   void * jresult ;
   physx::PxFoundation *arg1 = (physx::PxFoundation *) 0 ;
   physx::PxVersion arg2 ;
